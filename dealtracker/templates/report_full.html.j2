@@ -1,0 +1,57 @@
+{% extends "base.html.j2" %}
+{% block title %}Full DealTracker Report{% endblock %}
+{% block content %}
+
+<h1>DealTracker — Full Report</h1>
+<div class="meta">Generated {{ generated_at }} &nbsp;|&nbsp; {{ deals | length }} deal(s)</div>
+
+{% for entry in deals %}
+{% set deal = entry.deal %}
+{% set customer = entry.customer %}
+{% set documents = entry.documents %}
+{% set reconciliation = entry.reconciliation %}
+
+<div style="page-break-inside: avoid; margin-bottom: 40px; border: 1px solid #ddd; border-radius: 6px; padding: 16px;">
+  <h2 style="border: none; margin-top: 0;">
+    {{ customer.name }} — {{ deal.description }}
+    <span class="status-{{ deal.status }}" style="font-size:12px; margin-left: 10px;">[{{ deal.status | upper }}]</span>
+  </h2>
+
+  <table>
+    <tr>
+      <th>Date</th><th>Type</th><th>Amount</th><th>Confirmed</th><th>File</th>
+    </tr>
+    {% for doc in documents %}
+    <tr {% if reconciliation and doc.id in reconciliation.invoice_doc_ids and reconciliation.has_discrepancy %}style="background:#fff0f0"{% endif %}>
+      <td>{{ doc.confirmed_date or doc.ai_extracted_date or '—' }}</td>
+      <td>{{ (doc.confirmed_doc_type or doc.doc_type or 'unknown') | replace('_', ' ') | title }}</td>
+      <td class="amount">
+        {% set amt = doc.confirmed_total_amount if doc.is_confirmed else doc.ai_total_amount %}
+        {% if amt %}${{ "%.2f" | format(amt) }}{% else %}—{% endif %}
+      </td>
+      <td>{% if doc.is_confirmed %}<span class="badge badge-green">Yes</span>{% else %}<span class="badge badge-yellow">Pending</span>{% endif %}</td>
+      <td><a href="file://{{ doc.full_path }}">{{ doc.original_filename }}</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  {% if reconciliation %}
+  <div class="reconcile-box {% if reconciliation.has_discrepancy %}has-issues{% else %}clean{% endif %}" style="margin-bottom:0">
+    Agreed: <strong>{% if reconciliation.agreed_amount %}${{ "%.2f" | format(reconciliation.agreed_amount) }}{% else %}—{% endif %}</strong>
+    &nbsp;|&nbsp;
+    Invoiced: <strong>${{ "%.2f" | format(reconciliation.invoiced_amount) }}</strong>
+    &nbsp;|&nbsp;
+    Paid: <strong>${{ "%.2f" | format(reconciliation.paid_amount) }}</strong>
+    &nbsp;|&nbsp;
+    Status: <span class="status-{{ reconciliation.status }}"><strong>{{ reconciliation.status | upper | replace('_', ' ') }}</strong></span>
+    {% if reconciliation.discrepancies %}
+    <div class="discrepancy">
+      <ul>{% for d in reconciliation.discrepancies %}<li>{{ d }}</li>{% endfor %}</ul>
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+</div>
+{% endfor %}
+
+{% endblock %}

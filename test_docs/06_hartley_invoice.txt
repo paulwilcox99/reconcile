@@ -1,0 +1,38 @@
+INVOICE
+
+My Company LLC
+123 Contractor Way, Springfield, IL 62701
+(555) 800-1234
+
+Invoice #:    INV-2025-031
+Invoice Date: February 18, 2025
+Due Date:     March 5, 2025
+
+Bill To:
+Mike Hartley
+Hartley Realty Group
+1400 Commerce Blvd Suite 200
+Springfield, IL 62702
+
+Project: Kitchen Remodel - 512 Oakwood Drive
+Reference: PO HRG-PO-0142 / Quote QTE-2025-007
+
+DESCRIPTION                                      AMOUNT
+----------------------------------------------------------
+Cabinet removal & disposal                       $  850.00
+New upper & lower cabinets (22 LF, semi-custom)  $4,200.00
+Quartz countertops (installed)                   $2,800.00
+Tile backsplash (material + labor)               $  975.00
+Sink, faucet, and plumbing hookup                $  620.00
+Paint - walls and ceiling (2 coats)              $  480.00
+----------------------------------------------------------
+SUBTOTAL                                         $9,925.00
+Tax (8%)                                         $  794.00
+----------------------------------------------------------
+INVOICE TOTAL                                    $10,719.00
+
+Less deposit received (01/28/2025):             -$5,359.50
+BALANCE DUE:                                     $5,359.50
+
+Please remit payment to My Company LLC
+Thank you for your business!

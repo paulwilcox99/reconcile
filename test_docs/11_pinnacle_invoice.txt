@@ -1,0 +1,36 @@
+INVOICE
+
+My Company LLC
+123 Contractor Way, Springfield, IL 62701
+(555) 800-1234
+
+Invoice #:    INV-2025-044
+Invoice Date: March 10, 2025
+Due Date:     March 25, 2025
+
+Bill To:
+Sandra Webb
+Pinnacle Medical Associates
+88 Medical Park Drive Suite 400
+Springfield, IL 62704
+
+Project: Server Room Buildout
+Reference: PO PMA-2025-0088
+
+DESCRIPTION                                      AMOUNT
+----------------------------------------------------------
+Framing & drywall (2 walls, taped & painted)     $1,850.00
+Electrical - 8x dedicated 20-amp circuits        $3,600.00
+Raised flooring (200 sq ft, installed)           $2,400.00
+Cooling unit installation                        $  950.00
+Network cable runs - 12 drops (Cat6)             $1,440.00
+Access control door & hardware (installed)       $1,875.00
+Permit fees (actual)                             $  285.00
+Additional work: fire suppression inspection     $  350.00
+----------------------------------------------------------
+INVOICE TOTAL                                    $12,750.00
+
+NOTE: Additional $350 charge for required fire suppression
+inspection not included in original quote.
+
+Payment due within 15 days.

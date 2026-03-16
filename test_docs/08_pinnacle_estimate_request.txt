@@ -1,0 +1,24 @@
+From: Sandra Webb <swebb@pinnaclemedical.com>
+To: contractor@mycompany.com
+Date: February 3, 2025
+Subject: Estimate Needed - Server Room Buildout
+
+Hello,
+
+Pinnacle Medical Associates is expanding our IT infrastructure and we need
+to build out a dedicated server room in our existing office space (approx
+250 sq ft, currently unused storage).
+
+Work needed:
+  - Framing and drywall for 2 new walls
+  - Dedicated 20-amp electrical circuits (need 8 total)
+  - Raised flooring (approximately 200 sq ft)
+  - Cooling unit installation (unit provided by us)
+  - Network cable runs (12 drops)
+  - Access control door installation
+
+Please provide an estimate at your earliest convenience.
+
+Sandra Webb
+Office Manager, Pinnacle Medical Associates
+(555) 317-9900

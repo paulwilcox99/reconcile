@@ -1,0 +1,70 @@
+{% extends "base.html.j2" %}
+{% block title %}Deal Report — {{ deal.description }}{% endblock %}
+{% block content %}
+
+<h1>Deal Report</h1>
+<div class="meta">Generated {{ generated_at }}</div>
+
+<h2>Deal Summary</h2>
+<table>
+  <tr><th>Field</th><th>Value</th></tr>
+  <tr><td>Customer</td><td>{{ customer.name }}</td></tr>
+  <tr><td>Description</td><td>{{ deal.description }}</td></tr>
+  <tr><td>Deal ID</td><td>{{ deal.id }}</td></tr>
+  <tr><td>Status</td><td><span class="status-{{ deal.status }}">{{ deal.status | upper }}</span></td></tr>
+  <tr><td>Agreed Amount</td><td class="amount">{% if deal.agreed_amount %}${{ "%.2f" | format(deal.agreed_amount) }}{% else %}—{% endif %}</td></tr>
+  {% if customer.email %}<tr><td>Customer Email</td><td>{{ customer.email }}</td></tr>{% endif %}
+  {% if customer.phone %}<tr><td>Customer Phone</td><td>{{ customer.phone }}</td></tr>{% endif %}
+</table>
+
+<h2>Document Timeline</h2>
+<table>
+  <tr>
+    <th>ID</th><th>Date</th><th>Type</th><th>Amount</th><th>Confirmed</th><th>File</th>
+  </tr>
+  {% for doc in documents %}
+  <tr {% if doc.id in discrepant_invoice_ids %}style="background:#fff0f0"{% endif %}>
+    <td>{{ doc.id }}</td>
+    <td>{{ doc.confirmed_date or doc.ai_extracted_date or '—' }}</td>
+    <td>{{ (doc.confirmed_doc_type or doc.doc_type or 'unknown') | replace('_', ' ') | title }}</td>
+    <td class="amount">
+      {% set amt = doc.confirmed_total_amount if doc.is_confirmed else doc.ai_total_amount %}
+      {% if amt %}${{ "%.2f" | format(amt) }}{% else %}—{% endif %}
+    </td>
+    <td>
+      {% if doc.is_confirmed %}
+        <span class="badge badge-green">Yes</span>
+      {% else %}
+        <span class="badge badge-yellow">Pending</span>
+      {% endif %}
+    </td>
+    <td><a href="file://{{ doc.full_path }}">{{ doc.original_filename }}</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% if reconciliation %}
+<h2>Reconciliation</h2>
+<div class="reconcile-box {% if reconciliation.has_discrepancy %}has-issues{% else %}clean{% endif %}">
+  <table style="margin-bottom:0">
+    <tr><th>Item</th><th class="amount">Amount</th></tr>
+    <tr><td>Agreed (Quote / PO)</td><td class="amount">{% if reconciliation.agreed_amount %}${{ "%.2f" | format(reconciliation.agreed_amount) }}{% else %}—{% endif %}</td></tr>
+    <tr><td>Total Invoiced</td><td class="amount">${{ "%.2f" | format(reconciliation.invoiced_amount) }}</td></tr>
+    <tr><td>Total Paid</td><td class="amount">${{ "%.2f" | format(reconciliation.paid_amount) }}</td></tr>
+    <tr>
+      <td><strong>Status</strong></td>
+      <td class="amount"><span class="status-{{ reconciliation.status }}">{{ reconciliation.status | upper | replace('_', ' ') }}</span></td>
+    </tr>
+  </table>
+  {% if reconciliation.discrepancies %}
+  <div class="discrepancy">
+    <strong>Discrepancies:</strong>
+    <ul>
+      {% for d in reconciliation.discrepancies %}<li>{{ d }}</li>{% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+
+{% endblock %}

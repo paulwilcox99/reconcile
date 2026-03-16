@@ -1,0 +1,23 @@
+PURCHASE ORDER
+
+Hartley Realty Group
+1400 Commerce Blvd, Suite 200
+Springfield, IL 62702
+
+PO Number:    HRG-PO-0142
+PO Date:      January 21, 2025
+Vendor:       My Company LLC
+
+Project:      Kitchen Remodel - 512 Oakwood Drive, Springfield IL
+
+Description:                                     Amount
+----------------------------------------------------------
+Kitchen remodel per Quote #QTE-2025-007          $10,719.00
+----------------------------------------------------------
+TOTAL AUTHORIZED AMOUNT                          $10,719.00
+
+Payment Terms: Per agreed schedule (50% deposit / 50% on completion)
+
+Approved by: Mike Hartley
+Title: Owner, Hartley Realty Group
+Date: January 21, 2025
